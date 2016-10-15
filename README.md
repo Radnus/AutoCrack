@@ -18,10 +18,17 @@ Extract Hashes and Format from various sources...
 
 ntds.dit/SYSTEM
 	1. libesedb-20120102
+https://github.com/libyal/libesedb/wiki/Building
+~/tools/ntds.dit/libesedb-20120102/esedbtools
+./esedbexport ntds.dit
 
 	2. NTDSXtract_1.0
 		a. dshashes.py
 wget http://ptscripts.googlecode.com/svn/trunk/dshashes.py
+
+python dsusers.py <DATATABLE FILE><LINKTABLE FILES><DIRECTORY TO WORK IN>–passwordhashes –lmoutfile <LM OUT FILE> –ntoutfile <NTLM OUT FILE> –pwdformat john –syshive <SYSTEM FILE>
+
+sudo pip install pycrypto
 
 Replace blank lm hashes
 sed 's/aad3b435b51404eeaad3b435b51404ee/**********NO_PASSWORD!**********/'
@@ -121,10 +128,19 @@ _______
 STEP 5
 
 No Rest for the Wicked...Consolidate and Run Again!
-
 STEPs 3-5
-
-
 _______
 STEP 6
+Analyze and Present the Data. 
+
+Now we need to provide highlights of the data. We use a tool called pipal. This is a ruby script that takes an input file of the cracked passwords and returns useful metrics that can be incorporated into reports or presentations very easily.
+
+Get pipal.
+git clone https://github.com/digininja/pipal
+
+cd pipal && ruby pipal.rb demo_pipal_in.txt >> pipal_out.txt
+
+_______
+STEP NEXT
+
 Test	"john pwdump.txt -format=nt -loopback=john.pot -rules=nt"
